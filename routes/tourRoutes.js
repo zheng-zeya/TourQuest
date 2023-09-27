@@ -1,16 +1,14 @@
 const express = require('express');
 const tourController = require('../controllers/tourController');
 const authController = require('../controllers/authController');
+const reviewRouter = require('./reviewRoutes');
 
 const router = express.Router();
 
 // router.param('id', tourController.checkID);
 
-/*
-    create a checkbody middleware
-    check if body contains the name and price property. if not return 400(bad req)
-    add it to the post handler stack
-*/
+// POST /tour/tourId/reviews
+router.use('/:tourId/reviews', reviewRouter);
 
 router.route('/top-5-cheap').get(tourController.aliasTopTours, tourController.getAllTours);
 
